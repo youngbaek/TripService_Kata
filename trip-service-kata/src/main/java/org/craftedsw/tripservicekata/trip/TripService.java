@@ -9,7 +9,7 @@ import org.craftedsw.tripservicekata.user.UserSession;
 
 public class TripService {
 
-	public List<Trip> getFriendTrips(User friend, User loggedInUser) throws UserNotLoggedInException {
+	public List<Trip> getTripsByUser(User friend, User loggedInUser) throws UserNotLoggedInException {
 		if (loggedInUser == null){
 			throw new UserNotLoggedInException();
 		}
