@@ -54,6 +54,7 @@ public class TripServiceTest {
 		friend.addTrip(TO_BRAZIL);
 		friend.addTrip(TO_LONDON);
 		
+		
 		List<Trip> friendTrips = tripService.getTripsByUser(friend);
 		
 		assertThat(friendTrips.size(), is(2));;
