@@ -19,12 +19,11 @@ public class UserTest {
 		assertThat(user.isFriendsWith(PAUL), is(false));
 	}
 	
-	@Test
-	public void 
+	@Test public void 
 	should_inform_when_users_aer_friends() {
 		User user = UserBuilder.aUser()
-				.friendsWith(BOB, PAUL)
-				.build();
+						.friendsWith(BOB, PAUL)
+						.build();
 		
 		assertThat(user.isFriendsWith(PAUL), is(true));
 		
