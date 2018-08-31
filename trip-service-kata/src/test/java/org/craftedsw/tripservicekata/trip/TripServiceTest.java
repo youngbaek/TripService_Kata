@@ -2,6 +2,7 @@ package org.craftedsw.tripservicekata.trip;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.core.Is.*;
+import static org.craftedsw.tripservicekata.trip.UserBuilder.*;
 
 import java.util.List;
 
@@ -10,6 +11,7 @@ import org.craftedsw.tripservicekata.trip.TripService;
 import org.craftedsw.tripservicekata.user.User;
 import org.junit.Before;
 import org.junit.Test;
+
 
 public class TripServiceTest {
 	
@@ -37,9 +39,10 @@ public class TripServiceTest {
 	
 	@Test public void
 	should_not_return_any_trips_when_users_are_not_friends(){		
-		User friend = new User();
-		friend.addFriend(ANOTHER_USER);
-		friend.addTrip(TO_BRAZIL);
+		User friend = aUser()
+							.friendsWith(ANOTHER_USER)
+							.withTrips(TO_BRAZIL)
+							.build();
 		
 		List<Trip> friendTrips = tripService.getTripsByUser(friend);
 		
@@ -48,12 +51,10 @@ public class TripServiceTest {
 	
 	@Test public void
 	should_return_friend_trips_when_users_are_friends(){
-		User friend = new User();
-		friend.addFriend(ANOTHER_USER);
-		friend.addFriend(loggedInUser);
-		friend.addTrip(TO_BRAZIL);
-		friend.addTrip(TO_LONDON);
-		
+		User friend = aUser()
+							.friendsWith(ANOTHER_USER, loggedInUser)
+							.withTrips(TO_BRAZIL, TO_LONDON)
+							.build();
 		
 		List<Trip> friendTrips = tripService.getTripsByUser(friend);
 		
